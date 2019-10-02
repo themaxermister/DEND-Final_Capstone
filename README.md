@@ -263,46 +263,58 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 
 ### Flow of data in subdag_stage.py
 
-stage_checkin
+- stage_checkin
+
 <img src="images/subdag_stage_checkin.png"/>
 
-stage_business
+- stage_business
+
 <img src="images/subdag_stage_business.png"/> 
 
-stage_user
+- stage_user
+
 <img src="images/subdag_stage_user.png"/> 
 
-stage_review
+- stage_review
+
 <img src="images/subdag_stage_review.png"/> 
 
-stage_tip
+- stage_tip
+
 <img src="images/subdag_stage_tip.png"/> 
 
 ### Flow of data in subdag_load.py
   
 #### Dimensional Tables
 
-load_location
+- load_location
+
 <img src="images/subdag_load_location.png"/> 
 
-load_opening
+- load_opening
+
 <img src="images/subdag_load_opening.png"/> 
 
-load_business
+- load_business
+
 <img src="images/subdag_load_business.png"/> 
 
-load_compliment
+- load_compliment
+
 <img src="images/subdag_load_compliment.png"/> 
 
-load_user
+- load_user
+  
 <img src="images/subdag_load_user.png"/>
 
 #### Fact Tables
 
-load_review
+- load_review
+  
 <img src="images/subdag_load_review.png"/> 
 
-load_tip
+- load_tip
+
 <img src="images/subdag_load_tip.png"/> 
 
 ### _Flow of data in subdag_check.py_
