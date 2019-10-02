@@ -1,8 +1,8 @@
 import os
 import pandas as pd
 
-folder_path = "E:/OneDrive - Ngee Ann Polytechnic/Udacity - Data Engineering/6. Final Capstone PW/Resources/Datasets/Yelp/yelp-dataset/"	# Extracted folder
-save_path = "./data/"		# Data folder path
+folder_path = ""	# Extracted folder
+save_path = "./data/"	# Data folder path
 
 def readFiles(save_path):
 	for path, dirname, filename in os.walk(save_path):
