@@ -56,6 +56,7 @@ class StageToPostgresOperator(BaseOperator):
         self.log.info(self.file_path)
         file_type = (self.file_path).split(".", -1)[-1]
         
+        # STAGE JSON FILES TO DATABASE
         if (file_type == "json"):
             # Create temp Json table
             postgres.run(StageToPostgresOperator.temp_table_sql)
@@ -84,6 +85,8 @@ class StageToPostgresOperator(BaseOperator):
             
             self.log.info(f"{self.table} STAGED")
 
+
+        # STAGE CSV FILES TO DATABASE
         elif (file_type == "csv"):
             formatted_sql = StageToPostgresOperator.copy_csv_sql.format(
                 self.table,

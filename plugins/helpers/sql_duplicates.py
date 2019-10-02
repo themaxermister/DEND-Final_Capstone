@@ -1,4 +1,5 @@
 class SqlDuplicates:
+	# SQL to remove duplicates in main database tables
 	deletedup_sql = """
 		WITH cte AS
 			(SELECT ctid,

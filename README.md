@@ -1,4 +1,4 @@
-# Data Pipeline for Yelp Reviews
+# Data Pipeline for Ecommerce
 
 A python program that built data pipelines that are dynamic and built from reusable tasks, can be monitored, and allow easy backfills using Apache Airflow.
 
@@ -185,7 +185,7 @@ password: password
 ### Sub DAGs
 
 - subdag_stage.py : Drop, create and load staging tables
-- subdag_load.py : Loads all fact and dimensional tables
+- subdag_load.py : Loads all fact and dimensional **tables**
 - subdag_check.py : Perform data quality checks on all fact and dimensional tables
 
 ### SQL
@@ -232,7 +232,6 @@ The data files available for download are as listed below:
 - yelp_academic_dataset_review.json
 - yelp_academic_dataset_tip.json
 - yelp_academic_dataset_user.json
-
 
 ### Possible Outcomes
 

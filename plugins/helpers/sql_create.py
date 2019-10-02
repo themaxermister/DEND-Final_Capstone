@@ -5,7 +5,6 @@ class SqlCreate:
 	"""
 
 	# ## DROP STAGING TABLES
-
 	DROP_STAGING_TIP_TABLE = DROP_TABLE.format(
 		"public.staging_tip"
 	)
@@ -26,7 +25,7 @@ class SqlCreate:
 		"public.staging_checkin"
 	)
 	
-	# DROP DIM TABLES
+	# ## DROP FACT TABLES
 	DROP_TIP_FACT_TABLE = DROP_TABLE.format(
 		"public.tip_table"
 	)
@@ -35,6 +34,7 @@ class SqlCreate:
 		"public.review_table"
 	)
 
+	# ## DROP DIM TABLES
 	DROP_USER_DIM_TABLE = DROP_TABLE.format(
 		"public.user_table"
 	)
@@ -88,7 +88,6 @@ class SqlCreate:
 		checkin_count     	int8
 	);"""
 
-	# CHECK FILE FORMAT
 	CREATE_STAGING_REVIEW_TABLE = """CREATE TABLE IF NOT EXISTS public.staging_review (
 		review_id           varchar(256),
 		user_id             varchar(256),
@@ -136,7 +135,7 @@ class SqlCreate:
 		compliment_photos       int8
 	);"""
 
-	# ##  CREATE DATABASE TABLES
+	# ##  CREATE DIM TABLES
 	CREATE_LOCATION_DIM_TABLE = """CREATE TABLE IF NOT EXISTS public.location_table (
 		address			text			NOT NULL,	
 		city			varchar(256),
@@ -200,6 +199,7 @@ class SqlCreate:
 		sunday			varchar(256)
 	);"""
 
+	# ## CREATE FACT TABLES
 	CREATE_REVIEW_FACT_TABLE = """CREATE TABLE IF NOT EXISTS public.review_table (
 		review_id		varchar(256)	NOT NULL,
 		user_id			varchar(256)	NOT NULL,

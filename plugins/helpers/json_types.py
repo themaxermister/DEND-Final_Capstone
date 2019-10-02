@@ -1,4 +1,5 @@
 class JsonTypes:
+    # Outlines data types for each column in JSON data files
     user_types = """data->>'user_id',
         data->>'name',
         CAST(data->>'review_count' AS int8),

@@ -1,4 +1,5 @@
 class SqlInsert:
+	# SQL to insert data into main tables
 	location_table_insert = ("""
 		SELECT DISTINCT address, city, state, postal_code, latitude, longitude
 		FROM public.staging_business

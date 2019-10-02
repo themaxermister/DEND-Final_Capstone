@@ -23,12 +23,14 @@ class LoadFactOperator(BaseOperator):
     def execute(self, context):
         postgres = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         
+        # Run to append data to fact_tables
         if self.append_data:
             sql_statement = 'INSERT INTO %s %s' % (self.table, self.insert_query)
             postgres.run(sql_statement)
-
+        
+        # Run nto remove all data from table and reload new data
         else:
-            sql_statement = 'DELETE FROM %s' % self.table
+            sql_statement = 'DELETE FROM %s' % (self.table)
             postgres.run(sql_statement)
 
             sql_statement = 'INSERT INTO %s %s' % (self.table, self.insert_query)

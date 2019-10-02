@@ -24,9 +24,11 @@ class LoadDimensionOperator(BaseOperator):
         self.insert_query = insert_query
 
     def execute(self, context):
+        # Make connection to Postgres database
         postgres = PostgresHook(postgres_conn_id=self.postgres_conn_id)
         
         self.log.info(f"Inserting data into {self.table}")
+        # Execute SQL to insert data into dimensional tables
         formatted_sql = LoadDimensionOperator.insert_sql.format(
             self.table,
             self.insert_query

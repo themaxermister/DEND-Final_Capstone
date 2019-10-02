@@ -10,7 +10,6 @@ from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.subdag_operator import SubDagOperator
 from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.python_operator import PythonOperator
-#from airflow.operators import (FileDataQualityOperator, FileRemovalOperator)
 from airflow.operators import (FileDataQualityOperator)
 
 from helpers import SqlCreate, SqlInsert
@@ -44,7 +43,7 @@ dag = DAG("dag",
 # 1. START TASK
 start_task = DummyOperator(task_id="start_task", dag=dag)
 
-# 2. DATA QUALITY CHECK OF FileData FILES
+# 2. DATA QUALITY CHECK OF DATA ILES
 check_file_quality_task_id = "check_file_quality_task"
 check_file_quality_task = FileDataQualityOperator(
     task_id = check_file_quality_task_id,
@@ -120,7 +119,6 @@ subdag_stage_review_task = SubDagOperator(
     dag = dag,
 )
 
-
 stage_tip_id = "stage_tip_task"
 subdag_stage_tip_task = SubDagOperator(
     subdag=stage_table(
@@ -137,8 +135,7 @@ subdag_stage_tip_task = SubDagOperator(
     dag = dag,
 )
 
-
-# 4. LOADING TABLES
+# 4. LOADING DATA INTO MAIN TABLES
 location_table_task_id = "location_table_task"
 subdag_location_table_task = SubDagOperator(
     subdag=init_table(
@@ -253,7 +250,7 @@ subdag_tip_table_task = SubDagOperator(
     dag=dag,
 )
 
-# 5. DATA QUALITY CHECK
+# 5. DATA QUALITY CHECK ON DATABASE TABLES
 check_table_data_quality_task_id = "table_data_quality_task"
 subdag_table_data_quality_task = SubDagOperator(
     subdag=check_table(

@@ -11,10 +11,12 @@ from airflow.models import BaseOperator
 from airflow.utils.decorators import apply_defaults
 
 def readFiles(save_path):
+	''' Get list of path and filenames from save_folder '''
 	for path, dirname, filename in os.walk(save_path):
 		return path, filename
 
 def fillEmpty(df):
+	''' Fill empty columns with values according to data type'''
 	for col in df:
 		dt = df[col].dtype
 		if (dt == 'object'):
@@ -29,7 +31,9 @@ def fillEmpty(df):
 	return df
 
 def id_generator(chars=string.ascii_uppercase + string.digits, size=10):
+	'''Generate unique id'''
 	return ''.join(random.choice(chars) for _ in range(size))
+
 def main(file, df):
 	if ("business" in file):
 		# Convert 'is_open' to boolean
@@ -58,7 +62,7 @@ def main(file, df):
 	elif ("review" in file):
 		df['date'] = df['date'].astype(str)
 
-	# 1. CHECK FOR MISSING VALUES
+	# 1. CHECK FOR MISSING VALUES AND FILL
 	nans = lambda df: df[df.isna().any(axis=1)]
 	nandf = len(nans(df))
 
@@ -136,7 +140,8 @@ def main(file, df):
 					hours_list = literal_eval(i)
 					for key, value in hours_list.items():
 						df.loc[[index], key] = value
-
+	
+	# Count total number of dates in checkin
 	elif ('checkin' in file):
 		df['checkin_count'] = 0
 		for index in df.index.tolist():
@@ -144,6 +149,7 @@ def main(file, df):
 				date_list = i.split(",")
 				df.loc[[index],'checkin_count'] = len(date_list)
 
+	# Create compliment_id
 	elif ('user' in file):
 		if ('compliment_id' not in df.columns):
 			df.insert(11, 'compliment_id', value="")
@@ -151,6 +157,7 @@ def main(file, df):
 				id = df.loc[[index], 'user_id'].iloc[0]
 				df.loc[[index], 'compliment_id'] = "C-" + id_generator(id)
 
+	# Create tip_id
 	elif('tip' in file):
 		if ('tip_id' not in df.columns):
 			df.insert(0, 'tip_id', value="")
@@ -174,7 +181,7 @@ class FileDataQualityOperator(BaseOperator):
 		self.save_path = save_path
 
 	def execute(self, context):
-		# UPDATE FILE
+		'''Perform data quality check on JSON and CSV files only'''
 		path, file_paths = readFiles(self.save_path)
 		for file in file_paths:
 			logging.info(file)
