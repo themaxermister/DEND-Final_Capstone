@@ -1,4 +1,4 @@
-# Data Pipeline for Ecommerce
+# Data Pipeline for Yelp Reviews
 
 A python program that built data pipelines that are dynamic and built from reusable tasks, can be monitored, and allow easy backfills using Apache Airflow.
 
