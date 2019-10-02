@@ -317,7 +317,7 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 
 <img src="images/subdag_load_tip.png"/> 
 
-### _Flow of data in subdag_check.py_
+### Flow of data in subdag_check.py
 
 <img src="images/subdag_check.png"/>
 
