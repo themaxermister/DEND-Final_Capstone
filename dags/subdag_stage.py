@@ -12,7 +12,7 @@ from airflow.operators import (StageToPostgresOperator)
 Subdag that drop, create and loads tables. For reset_dag.py use.
 """
 
-def stage_table (
+def stage_table(
         parent_dag_name,
         task_id,
         table,
@@ -21,7 +21,7 @@ def stage_table (
         create_sql,
         file_path,
         *args, **kwargs):
-    
+
     dag = DAG(
         f"{parent_dag_name}.{task_id}",
         **kwargs
@@ -51,5 +51,5 @@ def stage_table (
 
     drop_table >> create_table
     create_table >> load_to_postgres
-    
+
     return dag

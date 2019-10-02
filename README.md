@@ -262,14 +262,50 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 <img src="images/overall_data_schema.png"/>
 
 ### Flow of data in subdag_stage.py
-  
-<img src="images/subdag_stage.png"/> 
+
+stage_checkin
+<img src="images/subdag_stage_checkin.png"/>
+
+stage_business
+<img src="images/subdag_stage_business.png"/> 
+
+stage_user
+<img src="images/subdag_stage_user.png"/> 
+
+stage_review
+<img src="images/subdag_stage_review.png"/> 
+
+stage_tip
+<img src="images/subdag_stage_tip.png"/> 
 
 ### Flow of data in subdag_load.py
   
-<img src="images/subdag_load.png"/>
+#### Dimensional Tables
 
-### Flow of data in subdag_check.py
+load_location
+<img src="images/subdag_load_location.png"/> 
+
+load_opening
+<img src="images/subdag_load_opening.png"/> 
+
+load_business
+<img src="images/subdag_load_business.png"/> 
+
+load_compliment
+<img src="images/subdag_load_compliment.png"/> 
+
+load_user
+<img src="images/subdag_load_user.png"/>
+
+#### Fact Tables
+
+load_review
+<img src="images/subdag_load_review.png"/> 
+
+load_tip
+<img src="images/subdag_load_tip.png"/> 
+
+### _Flow of data in subdag_check.py_
 
 <img src="images/subdag_check.png"/>
 
@@ -278,6 +314,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 ### Main Tables Schema
 
 #### location_table
+
+Table contains unique addresses of businesses within the dataset.
 
 | col_name    | data_type         | constraints |
 |-------------|-------------------|-------------|
@@ -293,6 +331,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 <img src="images/location_table.png"/>
 
 #### opening_table
+
+Table contains each unqiue opening hours of businesses within the dataset.
 
 | col_name   | data_type    | constraints |
 |------------|--------------|-------------|
@@ -310,6 +350,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 <img src="images/opening_table.png"/>
 
 #### business_table
+
+Table contains information of each business within the dataset.
 
 | col_name      | data_type       | constraints |
 |---------------|-----------------|-------------|
@@ -329,6 +371,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 <img src="images/business_table.png"/>
 
 #### compliment_table
+
+Table contains the unique compliment count of each category for each user.
 
 | col_name      | data_type    | constraints |
 |---------------|--------------|-------------|
@@ -351,6 +395,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 
 #### user_table
 
+Table contains information of each unique user in the dataset.
+
 | col_name      | data_type      | constraints |
 |---------------|----------------|-------------|
 | user_id       | varchar(256)   | NOT NULL    |
@@ -372,6 +418,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 
 #### review_table
 
+Table contains information of each review in the dataset.
+
 | col_name    | data_type    | constraints |
 |-------------|--------------|-------------|
 | review_id   | varchar(256) | NOT NULL    |
@@ -389,6 +437,8 @@ The data schema for the dataset was revised to adopt a mixture of a snowflake an
 <img src="images/review_table.png"/>
 
 #### tip_table  
+
+Tabel contains information of each tip in the dataset
 
 | col_name         | data_type    | constraints |
 |------------------|--------------|-------------|
